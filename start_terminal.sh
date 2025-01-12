@@ -2,11 +2,15 @@
 
 SCRIPT_DIR="$(dirname "$0")"
 
+SCRIPT_DIR="$(dirname "$0")"
+PYTHON_BIN="$SCRIPT_DIR/venv/bin/python3"
+
 start_bot() {
-    "$SCRIPT_DIR/my_env/bin/python3" "$SCRIPT_DIR/start.py" &
+    "$PYTHON_BIN" "$SCRIPT_DIR/start.py" &
     PYTHON_TG_TT_BOT_PID=$!
     echo "Telegram server started with PID $PYTHON_TG_TT_BOT_PID. Press 'q' to quit, or type 'rs' to restart."
 }
+
 
 stop_bot() {
     if [ -n "$PYTHON_TG_TT_BOT_PID" ]; then
