@@ -28,7 +28,6 @@ def capture_video_requests(url, start_time, end_time, telegram_model, chat_id):
                 telegram_model.delete_message(chat_id, progress_message)
                 downloading_message = telegram_model.send_message(chat_id, "Downloading video...")['result']['message_id']
 
-
                 for video_url in video_urls:
                     response = page.request.get(video_url)
                     if response.status == 200:
@@ -45,7 +44,6 @@ def capture_video_requests(url, start_time, end_time, telegram_model, chat_id):
                             telegram_model.send_video(chat_id, video_buffer)
 
                         telegram_model.delete_message(chat_id, downloading_message)
-
                         break  # Stop after processing the first valid video
             else:
                 telegram_model.edit_message(chat_id, progress_message, "No video found.")
